@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fibnet</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="/public/css/output.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- data  -->
+    <script src="/public/js/nav-items.js"></script>
+    <!-- js functionalities -->
+    <script src="/public/js/scrollToTop.js" defer></script>
+    <script src="/public/js/sidebar.js" defer></script>
+    <!-- animation scripts  -->
+    <script src="/public/js/gsap.js" defer></script>
+
+    <!-- aos  -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- gasp -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <nav class="border-bottom">
+      <div class="container mx-auto w-full px-10 2xl:px-0">
+        <div class="w-full flex justify-between">
+          <div
+            class="h-24 w-auto overflow-hidden flex flex-col items-center justify-center p-2"
+          >
+            <img
+              src="/public/images/Logo/Fibnet Logo.png"
+              alt="Fibnet Logo"
+              class="w-auto h-auto max-w-full max-h-full object-contain flex-shrink-0"
+            />
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="hidden lg:inline-block">
+              <div
+                id="nav-section"
+                class="flex flex-col lg:flex-row items-start lg:items-center gap-1"
+              >
+                <script>
+                  const navsLists = navItems
+                    .map(
+                      (nav, idx) => `
+                                <a href="${nav.href}" class="text-xs font-medium uppercase text-dark-blue p-2 lg:p-1 rounded-md hover:bg-gray-100 w-full lg:w-auto lg:text-center">${nav.label}</a>
+                  `
+                    )
+                    .join("");
+                  document.getElementById("nav-section").innerHTML = navsLists;
+                </script>
+              </div>
+            </div>
+
+            <button
+              disabled="disabled"
+              class="bg-dark-blue p-2.5 flex gap-1.5 items-center rounded-lg border-none"
+            >
+              <div
+                class="h-3 w-3 rounded-full bg-lime-green-bright shrink-0"
+              ></div>
+              <p class="text-xs uppercase text-white font-semibold">
+                New update
+              </p>
+            </button>
+            <a
+              href="#"
+              class="cursor-pointer text-gray-800 no-underline border border-solid border-gray-800 py-2.5 px-5 rounded-xl flex gap-5 items-center"
+            >
+              <p class="text-xs uppercase font-semibold hidden lg:inline-block">
+                Search
+              </p>
+              <span class="hidden lg:inline-block"
+                ><i class="fa-solid fa-arrow-right"></i
+              ></span>
+              <span class="lg:hidden"
+                ><i class="fa-solid fa-magnifying-glass"></i
+              ></span>
+            </a>
+            <button
+              id="open-sidebar"
+              class="lg:hidden bg-white cursor-pointer text-gray-800 border border-solid border-gray-800 py-2.5 px-5 rounded-xl"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="lg:hidden">
+      <div
+        id="sidebar"
+        class="h-full w-full fixed inset-0 bg-black bg-opacity-80 z-50"
+      >
+        <div class="h-full w-2/3 bg-white">
+          <div
+            class="px-5 w-full flex justify-between items-center border-bottom"
+          >
+            <div
+              class="h-20 aspect-video w-auto overflow-hidden flex flex-col items-center justify-center p-2"
+            >
+              <img
+                src="/public/images/Logo/Fibnet Logo.png"
+                alt="Fibnet Logo"
+                class="w-auto h-auto max-w-full max-h-full object-contain flex-shrink-0"
+              />
+            </div>
+            <button
+              id="close-sidebar"
+              class="bg-transparent border-none text-red-500 hover:scale-105 duration-150 transform ease-in-out"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="px-5 pt-5">
+            <div
+              id="sidebar-section"
+              class="flex flex-col lg:flex-row items-start lg:items-center gap-1"
+            >
+              <script>
+                const sidebarLists = navItems
+                  .map(
+                    (nav, idx) => `
+                              <a href="${nav.href}" class="text-xs font-medium uppercase text-dark-blue p-2 lg:p-1 rounded-md hover:bg-gray-100 w-full lg:text-center">${nav.label}</a>
+                `
+                  )
+                  .join("");
+                document.getElementById("sidebar-section").innerHTML =
+                  sidebarLists;
+              </script>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 grow"></div>
+      </div>
+    </div>
+
+    <div class="padded-container">
+      <div
+        class="w-full flex flex-col md:flex-row gap-2 md:gap-0 justify-between"
+      >
+        <h1 class="font-bold text-7xl text-lime-green">Bridge the Future.</h1>
+        <div class="max-w-md 2xl:max-w-2xl flex flex-col gap-3">
+          <p class="text-xs text-gray-800">
+            Established in March 2017, FibNet has an extensive knowledge of
+            Information and Communication Technology, Furthermore We are an
+            eclectic
+          </p>
+          <a href="#" class="anchor-button">
+            <p class="text-xs uppercase font-semibold">
+              Book a Free Consultation
+            </p>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- hero image background  -->
+    <div class="h-full md:h-[600px] w-full">
+      <img
+        src="/public/images/Hero Image.png"
+        alt=""
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- alliances  -->
+    <div class="border-bottom">
+      <div
+        id="alliances-section"
+        class="w-full py-2.5 flex flex-wrap justify-center gap-2"
+      >
+        <script>
+          const alliances = [
+            "/public/images/Alliances/OCC.png",
+            "/public/images/Alliances/inficare-logo.png",
+            "/public/images/Alliances/sns-logo.png",
+            "/public/images/Alliances/mavorion.png",
+          ];
+
+          const allianceList = alliances
+            .map(
+              (alliance, idx) => `
+            <div class="h-16 md:h-24 w-auto overflow-hidden flex flex-col items-center justify-center p-2">
+                <img src="${alliance}" alt="partner" class="w-auto h-auto max-w-full max-h-full object-scale-down" loading="lazy" />
+            </div>
+
+                    `
+            )
+            .join("");
+          document.getElementById("alliances-section").innerHTML = allianceList;
+        </script>
+      </div>
+    </div>
+
+    <!-- services  -->
+    <div class="padded-container">
+      <div class="relative h-full w-full">
+        <div class="grid grid-cols-3">
+          <div class="col-span-2">
+            <div class="grid grid-cols-3 gap-2">
+              <div class="relative col-span-1 h-60 w-full">
+                <img
+                  src="/public/images/Services-Mock/Broadband for ALL.png"
+                  alt=""
+                  class="h-full w-full object-cover"
+                />
+                <div class="absolute inset-0 h-full w-full">
+                  <div class="p-5 h-full flex flex-col justify-end">
+                    <p class="font-semibold text-white">Broadband for ALL</p>
+                  </div>
+                </div>
+              </div>
+              <div class="relative col-span-2 h-60 w-full">
+                <img
+                  src="/public/images/Services-Mock/Infrastructure Development.png"
+                  alt=""
+                  class="h-full w-full object-cover"
+                />
+                <div class="absolute inset-0 h-full w-full">
+                  <div class="p-5 h-full flex flex-col justify-end">
+                    <p class="font-semibold text-white">
+                      Infrastructure Development
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="relative col-span-2 h-60 w-full">
+                <div
+                  class="relative h-full w-full bg-lime-green overflow-hidden"
+                >
+                  <div class="absolute -top-36 -left-48">
+                    <img
+                      src="/public/images/Network Image.png"
+                      alt=""
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div class="absolute inset-0 h-full w-full">
+                  <div class="p-5 h-full flex flex-col justify-end">
+                    <p class="font-semibold text-white">ICT Solutions</p>
+                  </div>
+                </div>
+              </div>
+              <div class="relative col-span-1 h-60 w-full">
+                <img
+                  src="/public/images/Services-Mock/Managed Services.png"
+                  alt=""
+                  class="h-full w-full object-cover"
+                />
+                <div class="absolute inset-0 h-full w-full">
+                  <div class="p-5 h-full flex flex-col justify-end">
+                    <p class="font-semibold text-white">Managed Services</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full flex justify-center">
+            <h1 class="text-2xl font-bold">Our Services</h1>
+          </div>
+        </div>
+        <div class="absolute top-0 -right-60">
+          <img
+            src="/public/images/Network Image.png"
+            alt=""
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- our products  -->
+    <div class="products-container padded-container">
+      <div class="flex flex-col gap-5">
+        <h1 class="text-2xl font-bold text-center w-full mb-5">Our Products</h1>
+        <div
+          id="products-section"
+          class="grid grid-cols-2 md:grid-cols-5 gap-y-5"
+        >
+          <script>
+            const products = [
+              {
+                icon: "/public/images/Products/Managed Services.png",
+                label: "Managed Services",
+                description:
+                  "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
+              },
+              {
+                icon: "/public/images/Products/Ocean Cable.png",
+                label: "Ocean Cable",
+                description:
+                  "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
+              },
+              {
+                icon: "/public/images/Products/ICT Solutions.png",
+                label: "ICT Solutions",
+                description:
+                  "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
+              },
+              {
+                icon: "/public/images/Products/Infrastructure Development.png",
+                label: "Infrastructure Development",
+                description:
+                  "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
+              },
+              {
+                icon: "/public/images/Products/Tiahan Optical Cable.png",
+                label: "Tiahan Optical Cable",
+                description:
+                  "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
+              },
+            ];
+
+            const productsList = products
+              .map(
+                (product, idx) => `
+            
+            <div class="product-card px-1 md:px-5 flex flex-col gap-2 items-center justify-center">
+                <img src="${product.icon}" alt="" class="h-[70px] aspect-square object-contain" />
+                <h2 class="text-center text-base font-semibold">${product.label}</h2>
+                <p class="text-xs text-center">
+                  ${product.description}
+                </p>
+            </div>
+            `
+              )
+              .join("");
+            document.getElementById("products-section").innerHTML =
+              productsList;
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!-- testimonials  -->
+    <div class="padded-container">
+      <div class="relative h-full w-full">
+        <div class="grid grid-cols-3">
+          <div class="w-full flex justify-center">
+            <h1 class="text-2xl font-bold">Testimonials</h1>
+          </div>
+          <div class="relative col-span-2">
+            <div data-aos="fade-left" class="h-72 aspect-video">
+              <img
+                src="/public/images/Testimonial-mock.png"
+                alt=""
+                class="h-full w-full object-contain"
+              />
+            </div>
+
+            <div data-aos="fade-left" class="absolute -bottom-10 right-0">
+              <div class="h-64 aspect-video bg-lime-green">
+                <div
+                  class="h-full w-full flex flex-col items-start justify-end p-10"
+                >
+                  <img
+                    src="/public/images/invertedcomma.png"
+                    alt=""
+                    class="h-32 aspect-square object-contain"
+                  />
+                  <p class="text-white mt-2 font-medium">
+                    The possibilities to explore and experiment keep me going.
+                    From being one of the first few employees on a project to
+                    leading a
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute top-0 left-0 -z-10">
+          <img
+            src="/public/images/Network Image.png"
+            alt=""
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- blogs  -->
+    <div class="border-bottom">
+      <div class="padded-container">
+        <div class="flex flex-col gap-5">
+          <h1 class="text-2xl font-bold text-center w-full mb-5">Blogs</h1>
+          <div
+            id="blogs-section"
+            class="blogs-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5"
+          >
+            <script>
+              const blogs = [
+                {
+                  cover_image: "/public/images/Blogs-Mock/Blog-1.png",
+                },
+                {
+                  cover_image: "/public/images/Blogs-Mock/Blog-2.png",
+                },
+                {
+                  cover_image: "/public/images/Blogs-Mock/Blog-3.png",
+                },
+              ];
+
+              const blogsList = blogs
+                .map(
+                  (blog, idx) => `
+            
+            <div class="blog-card-container flex flex-col gap-2 items-center justify-center">
+                <a href="#" class="cursor-pointer h-full w-full"><img src="${blog.cover_image}" alt="" class="h-60 w-full object-cover shadow-xl transform ease-in-out duration-150" /></a>
+                <h6 class="text-center text-sm text-gray-800">Announcement</h6>
+                <p class="text-sm text-center text-gray-500 font-medium">
+                 Turning Vision into Reality by Nurturing Your Startup's First Steps
+                </p>
+            </div>
+            `
+                )
+                .join("");
+              document.getElementById("blogs-section").innerHTML = blogsList;
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="padded-container">
+      <div
+        class="w-full flex flex-col md:flex-row gap-2 md:gap-0 justify-between"
+      >
+        <h1 class="font-bold text-xl md:text-3xl text-lime-green">
+          Build your strategy with FIBNET
+        </h1>
+        <a href="#" class="anchor-button">
+          <p class="text-xs uppercase font-semibold">Contact Us</p>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- footer  -->
+    <footer class="bg-dark-blue text-white relative overflow-hidden">
+      <div class="padded-container relative z-40">
+        <div class="border-bottom pb-5">
+          <div
+            class="flex flex-col md:flex-row gap-5 md:gap-0 justify-between pb-10"
+          >
+            <div
+              class="h-24 aspect-video w-auto overflow-hidden flex flex-col items-center justify-center p-2"
+            >
+              <img
+                src="/public/images/Logo/Fibnet Logo white.png"
+                alt="Fibnet Logo"
+                class="w-auto h-auto max-w-full max-h-full object-contain"
+              />
+            </div>
+
+            <div class="flex gap-x-10 gap-y-5">
+              <div class="footer-list">
+                <h4>About Us</h4>
+                <ul>
+                  <li><a href="#">Company Profile</a></li>
+                  <li><a href="#">Our Mission</a></li>
+                  <li><a href="#">News & Events</a></li>
+                  <li><a href="#">Career</a></li>
+                </ul>
+              </div>
+              <div class="footer-list">
+                <h4>Services</h4>
+                <ul>
+                  <li><a href="#">Broadband for ALL</a></li>
+                  <li><a href="#">ICT Solutions</a></li>
+                  <li><a href="#">Managed Services</a></li>
+                  <li><a href="#">Infrastructure Development </a></li>
+                </ul>
+              </div>
+              <div class="footer-list">
+                <h4>Products</h4>
+                <ul>
+                  <li><a href="#">Ocean Cable</a></li>
+                  <li><a href="#">Tiahan Fiber Optics Cable</a></li>
+                  <li><a href="#">Fiber Optics Solutions</a></li>
+                  <li><a href="#">ICT Service and Solutions</a></li>
+                  <li><a href="#">Managed Service</a></li>
+                  <li><a href="#">Infrastructure Development</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="flex flex-col justify-center">
+              <h3 class="font-semibold">Subscribe to our newsletter</h3>
+              <p class="text-xs">Stay updated with our news and promise.</p>
+              <div class="mt-2">
+                <div class="relative rounded-full overflow-hidden">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="text-sm border-none w-full py-2 px-4 pr-10"
+                  />
+                  <span
+                    class="w-max h-max absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-800"
+                  >
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full flex justify-end">
+            <button
+              onclick="topFunction()"
+              class="bg-transparent text-white border-none flex items-center"
+            >
+              <span class="pr-2">Back to top</span>
+              <span><i class="fa-solid fa-arrow-up"></i></span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="mt-10 w-full text-sm font-semibold text-inherit flex justify-between"
+        >
+          <p>Copyright © 2024 Fibnet</p>
+          <p>Follow us</p>
+        </div>
+      </div>
+      <div class="absolute bottom-0 right-0 z-0">
+        <img
+          src="/public/images/Network Image.png"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </footer>
+
+    <script>
+      AOS.init({
+        once: true,
+      });
+    </script>
+  </body>
+</html>
