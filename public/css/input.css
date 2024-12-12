@@ -10,4 +10,8 @@
     .border-bottom{
         @apply border border-solid border-x-0 border-t-0 border-gray-200
     }
+
+    .smooth-transform{
+        @apply transform ease-in-out duration-150
+    }
 }

@@ -44,6 +44,7 @@
               class="w-auto h-auto max-w-full max-h-full object-contain flex-shrink-0"
             />
           </div>
+
           <div class="flex items-center gap-2">
             <div class="hidden lg:inline-block">
               <div
@@ -54,14 +55,15 @@
                   const navsLists = navItems
                     .map(
                       (nav, idx) => `
-                                    <a href="${nav.href}" class="text-xs font-medium uppercase text-dark-blue p-2 lg:p-1 rounded-md hover:bg-gray-100 w-full lg:w-auto lg:text-center">${nav.label}</a>
-                      `
+                                <a href="${nav.href}" class="text-xs font-medium uppercase text-dark-blue p-2 lg:p-1 rounded-md hover:bg-gray-100 w-full lg:w-auto lg:text-center">${nav.label}</a>
+                  `
                     )
                     .join("");
                   document.getElementById("nav-section").innerHTML = navsLists;
                 </script>
               </div>
             </div>
+
             <button
               disabled="disabled"
               class="bg-dark-blue p-2.5 flex gap-1.5 items-center rounded-lg border-none"
@@ -97,6 +99,7 @@
         </div>
       </div>
     </nav>
+
     <div class="lg:hidden">
       <div
         id="sidebar"
@@ -131,8 +134,8 @@
                 const sidebarLists = navItems
                   .map(
                     (nav, idx) => `
-                                  <a href="${nav.href}" class="text-xs font-medium uppercase text-dark-blue p-2 lg:p-1 rounded-md hover:bg-gray-100 w-full lg:text-center">${nav.label}</a>
-                    `
+                              <a href="${nav.href}" class="text-xs font-medium uppercase text-dark-blue p-2 lg:p-1 rounded-md hover:bg-gray-100 w-full lg:text-center">${nav.label}</a>
+                `
                   )
                   .join("");
                 document.getElementById("sidebar-section").innerHTML =
@@ -144,97 +147,157 @@
         <div class="flex-1 grow"></div>
       </div>
     </div>
+
     <div class="h-full w-full flex-grow">
-      <div
-        class="relative bg-gray-50 w-full py-10 flex flex-col items-center justify-center text-center overflow-hidden"
-      >
-        <div class="z-10">
-          <h1 class="uppercase text-dark-blue border-bottom pb-2">
-            Our Services
-          </h1>
-          <!-- <p class="text-sm mt-2 text-dark-blue px-5 max-w-4xl">
-            We help to build Rural Broadband and bridging rural divides.
-            Therefore, we provide our FPAC Fiber Optics cable as an investment
-            as a partnership to Fiber broadband projects mostly in rural areas.
-          </p> -->
-        </div>
-        <div class="w-full h-full absolute top-0 right-0">
-          <img
-            src="/public/images/Network Image.png"
-            alt=""
-            class="h-full w-full object-cover"
-          />
-        </div>
-      </div>
-
-      <div class="w-full h-full py-10 px-5 sm:px-10 lg:px-20 2xl:px-32">
-        <div class="flex flex-col items-center">
-          <h6 class="text-dark-blue uppercase">Our Services</h6>
-          <h1 class="mt-5 text-3xl font-bold">
-            Find <span class="text-dark-blue">The Services You Want</span>
-          </h1>
-        </div>
-        <div class="mt-10">
-          <div id="services" class="service-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            <script>
-              const services = [
-                {
-                  icon: "/public/images/Products/Managed Services.png",
-                  label: "Managed Services",
-                  description:
-                    "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
-                    href:"/src/services/managed-service.html"
-                },
-                {
-                  icon: "/public/images/Products/Ocean Cable.png",
-                  label: "Broadband For all",
-                  description:
-                    "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
-                    href:"/src/services/broadband.html"
-                },
-                {
-                  icon: "/public/images/Products/ICT Solutions.png",
-                  label: "ICT Solutions",
-                  description:
-                    "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
-                    href:"/src/services/ict-solutions.html"
-                },
-                {
-                  icon: "/public/images/Products/Infrastructure Development.png",
-                  label: "Infrastructure Development",
-                  description:
-                    "Fibnet Inc is authorized global Representative of the Stainless Steel tube and Steel Armored with Corning glass Fiber Optics Cable.",
-                    href:"/src/services/inrastructure-development.html"
-                }
-              ];
-
-              const servicesList = services
-                .map(
-                  (service, idx) => `
-                <div class="service-card group relative rounded-2xl bg-white shadow-2xl hover:shadow-3xl p-10 flex flex-col items-start">
-                <div class="z-10 flex flex-col items-start">
-                    <img src="${service.icon}" alt="" class="h-[80px] aspect-square object-contain" />
-                    <h2 class="mt-4 pl-4 text-xl text-dark-blue font-semibold border-4 border-solid border-y-0 border-r-0">${service.label}</h2>
-                    <p class="mt-4 text-xs text-gray-700 line-clamp-3">
-                        ${service.description}
-                    </p>
-                    <a href="${service.href}" class="cursor-pointer mt-4 bg-transparent flex gap-2 border-none items-center text-gray-800 group-hover:text-dark-blue transform ease-in-out duration-150">
-                        <h5 class="font-medium">Read More</h5>
-                        <i class="fa-solid fa-plus"></i>
-                    </a>
-                </div>
-                <div class="z-0 absolute top-20 right-8 group-hover:right-10 transform ease-in-out duration-150">
-                    <h1 class="text-7xl text-gray-100">0${idx + 1}</h1>
-                </div>
-            </div>
-                `
-                )
-                .join("");
-              document.getElementById("services").innerHTML = servicesList;
-            </script>
+      <div class="h-72 w-full relative">
+        <img
+          src="/public/images/Header-Background.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+        <div class="absolute bg-black bg-opacity-50 inset-0 h-full w-full">
+          <div class="h-full w-full flex flex-col items-center justify-center">
+            <h1 class="text-white">ICT Solutions</h1>
+            <p class="mt-5 text-gray-300 text-xs font-medium">
+              <a
+                href="/src/index.html"
+                class="hover:text-white transform ease-in-out duration-150"
+                >Home</a
+              >&nbsp;&nbsp;-&nbsp;&nbsp;<a
+                href="/src/services.html"
+                class="hover:text-white transform ease-in-out duration-150"
+                >Services</a
+              >&nbsp;&nbsp;-&nbsp;&nbsp;<span class="text-white italic"
+                >ICT Solutions</span
+              >
+            </p>
           </div>
         </div>
       </div>
+
+      <section class="w-full px-5 sm:px-10 lg:px-20 2xl:px-32 py-10">
+        <div class="flex flex-col gap-10">
+          <!-- ICT Services and Solutions: -->
+          <div>
+            <h1 class="pb-5 text-dark-blue border-bottom">
+              ICT Services and Solutions:
+            </h1>
+            <ul class="pl-5 mt-5 text-gray-800 space-y-2">
+              <li>
+                Enterprise to Client Edge Solutions for Computer, and related
+                Support and Installation.
+              </li>
+              <li>
+                Computer Network, Internet, IP telephony Solutions and
+                Installation, and IT Infrastructure Planning, Design and
+                Support.
+              </li>
+              <li>Managed Services.</li>
+              <li>Surveillance System Installation and Support.</li>
+              <li>Application Installation and Support.</li>
+            </ul>
+          </div>
+
+          <!-- Network (LAN/WLAN, WAN, and IoTs, LoRA) Setup, Design and Support: -->
+          <div>
+            <h1 class="pb-5 text-dark-blue border-bottom">
+              Network (LAN/WLAN, WAN, and IoTs, LoRA) Setup, Design and Support:
+            </h1>
+            <ul class="pl-5 mt-5 text-gray-800 space-y-2">
+              <li>
+                Network (LAN/WLAN, WAN, and IoTs, LoRA) Setup, Design and
+                Support:
+              </li>
+              <li>
+                Maintenance and support services for any Cisco products, Aruba,
+                HP, SonicWALL, Fortinet and other local brands like Netgear and
+                others.
+              </li>
+              <li>Router, Switch, Firewall configuration.</li>
+              <li>Video and Voice/IP telephony, IP PABX.</li>
+              <li>Any wireless products configuration.</li>
+              <li>LoRaWAN system support and IoTs.</li>
+              <li>
+                Setup Surveillance camera systems (DVR/NVR) and its network and
+                connecting to Internet for remote watching.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Computer IT related support includes:  For any Small Businesses to Enterprise. -->
+          <div>
+            <h1 class="pb-5 text-dark-blue border-bottom">
+              Computer IT related support includes: For any Small Businesses to
+              Enterprise.
+            </h1>
+            <ul class="mt-5 list-decimal pl-5 space-y-2">
+              <li>
+                Schedule Maintenance Monthly Tasks, Maintenance includes:
+                <ul class="pl-5 mt-5 text-gray-800 space-y-2">
+                  <li>Review IT Help Desk Tickets</li>
+                  <li>Address users issues</li>
+                  <li>Perform Maintenance Checklist</li>
+                  <li>Microsoft and Mac application support</li>
+                  <li>Network Management and Support</li>
+                  <li>Security Updates, and Scans</li>
+                  <li>Review / organize equipment/inventories</li>
+                  <li>New System Setup and Migration</li>
+                  <li>Data Backup and Recovery</li>
+                  <li>
+                    Review Emergency Procedures; test and update documentation
+                    as needed
+                  </li>
+                </ul>
+              </li>
+              <li>
+                As per needed, Perform task In person service:
+                <ul class="pl-5 mt-5 text-gray-800 space-y-2">
+                  <li>Review IT Help Desk Tickets</li>
+                  <li>Address call/users issues</li>
+                  <li>Update IT Help Desk Tickets</li>
+                </ul>
+              </li>
+              <li>
+                On Call service, Remote service:
+                <ul class="pl-5 mt-5 text-gray-800 space-y-2">
+                  <li>Perform by Remote application tool:</li>
+                  <li>Review IT Help Desk Tickets</li>
+                  <li>Address call/users issues</li>
+                  <li>Update IT Help Desk Tickets</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- What we can do besides IT services: -->
+          <div>
+            <h1 class="pb-5 text-dark-blue border-bottom">
+              What we can do besides IT services:
+            </h1>
+            <ul class="list-disc pl-5 mt-5 text-gray-800 space-y-2">
+              <li>
+                Application Development, Expert on Custom Software, Web
+                Applications, Mobile Applications.
+              </li>
+              <li>
+                In-house software division for the Software (developed OSS/BSS
+                system for CRM, Service provisioning, Customer service
+                life-cycle management, Inventory Management, Fiber / FTTH
+                Network Planning and Mobile App based Service Provisioning,
+                Field Operations and Support, Customer self care portal as well
+                as Customer App).
+              </li>
+              <li>Any required virtual/co-locates service.</li>
+              <li>Any required cloud service Support and sales.</li>
+              <li>Machine Learning Applications.</li>
+              <li>IP Phone Systems and video systems Support and Sales.</li>
+              <li>Surveillance Camera Systems Support and Sales.</li>
+              <li>POS Systems Sales and Support.</li>
+              <li>Control Systems Sales and Support.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- footer  -->
@@ -253,6 +316,7 @@
                 class="w-auto h-auto max-w-full max-h-full object-contain"
               />
             </div>
+
             <div class="flex gap-x-10 gap-y-5">
               <div class="footer-list">
                 <h4>About Us</h4>
@@ -284,6 +348,7 @@
                 </ul>
               </div>
             </div>
+
             <div class="flex flex-col justify-center">
               <h3 class="font-semibold">Subscribe to our newsletter</h3>
               <p class="text-xs">Stay updated with our news and promise.</p>
@@ -303,6 +368,7 @@
               </div>
             </div>
           </div>
+
           <div class="w-full flex justify-end">
             <button
               onclick="topFunction()"
@@ -328,6 +394,7 @@
         />
       </div>
     </footer>
+
     <script>
       AOS.init({
         once: true,
